@@ -23,21 +23,54 @@ let startBtn = document.getElementById("start"),
     
 let money, time;
 
-// expensesBtn.disabled = true;
+expensesBtn.disabled = true;
 optionalExpensesBtn.disabled = true;
 // countBtn.disabled = true;
 
 
-
-optionalExpensesItem.forEach(function(item) {
-  item.addEventListener('change', function() {
-    if (item.value == "") {
-      optionalExpensesBtn.disabled = true;
-    } else {
-      optionalExpensesBtn.disabled = false;
-    }
+for (let i = 0; i < expensesItem.length; i++) {
+  expensesItem[i].addEventListener('input', function() {
+      for (let i = 0; i < expensesItem.length; i++) {
+          if (expensesItem[i].value == '') {
+              expensesBtn.disabled = true;
+              return;
+          } else {
+              expensesBtn.disabled = false;
+          }
+      }
   });
-});
+}
+
+
+
+for (let i = 0; i < optionalExpensesItem.length; i++) {
+  optionalExpensesItem[i].addEventListener('input', function() {
+      for (let i = 0; i < expensesItem.length; i++) {
+          if (optionalExpensesItem[i].value == '') {
+              optionalExpensesBtn.disabled = true;
+              return;
+          } else {
+              optionalExpensesBtn.disabled = false;
+          }
+      }
+  });
+}
+
+
+
+for (let i = 0; i < expensesItem.length; i++) {
+  expensesItem[i].addEventListener('input', function() {
+      for (let i = 0; i < expensesItem.length; i++) {
+          if (expensesItem[i].value == '') {
+              expensesBtn.disabled = true;
+              return;
+          } else {
+              expensesBtn.disabled = false;
+          }
+      }
+  });
+}
+
 
 
 
@@ -76,7 +109,7 @@ expensesBtn.addEventListener('click', function() {
 });
 
 optionalExpensesBtn.addEventListener('click', function() {
-  for(let j = 1; j < optionalExpensesItem.length; j++) {
+  for(let j = 0; j < optionalExpensesItem.length; j++) {
     let expens = optionalExpensesItem[j].value;
     if (typeof (expens) === "string" && 
     typeof (expens) != "" && 
@@ -93,7 +126,7 @@ optionalExpensesBtn.addEventListener('click', function() {
 countBtn.addEventListener('click', function() {
 
   if(appData.budget != undefined) {
-    appData.moneyPerDay = (appData.budget / 30).toFixed();
+    appData.moneyPerDay = ((appData.budget - +expensesValue.textContent) / 30).toFixed();
     dayBudgetValue.textContent = appData.moneyPerDay;
   
     if(appData.moneyPerDay < 100) {
