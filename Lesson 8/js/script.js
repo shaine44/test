@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", function() {
   function showTabContent (b) {
     if (tabContent[b].classList.contains('hide')) {
       tabContent[b].classList.remove('hide');
-      tabContent[b].classList.add('hshow');
+      tabContent[b].classList.add('show');
     }
   }
 
@@ -73,4 +73,32 @@ function getTimeRemaining(endtime) {
   }
 
   setClock("timer", deadline);
+
+  // Modal
+
+  let more = document.querySelector(".more"),
+      overlay = document.querySelector(".overlay"),
+      close = document.querySelector(".popup-close"),
+      descriptionBtn = document.querySelectorAll(".description-btn");
+
+  more.addEventListener('click', function() {
+    overlay.style.display = "block";
+    this.classList.add("more-splash");
+    document.body.style.overflow = "hidden";
+  });
+  close.addEventListener('click', function() {
+    overlay.style.display = "none";
+    more.classList.remove("more-splash");
+    document.body.style.overflow = "";
+  });
+  descriptionBtn.forEach(descriptionBtn =>
+    descriptionBtn.addEventListener('click', function() {
+    overlay.style.display = "block";
+    more.classList.add("more-splash");
+    document.body.style.overflow = "hidden";
+  }));
+  console.log(descriptionBtn);
 });
+
+
+
